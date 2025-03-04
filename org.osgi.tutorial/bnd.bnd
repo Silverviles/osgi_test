@@ -1,0 +1,22 @@
+-buildpath: \
+	osgi.core,\
+	org.silverviles.platform
+Export-Package: org.osgi.tutorial
+Bundle-Version: 1.0.0.0
+Bundle-Activator: org.osgi.tutorial.HelloWorldActivator
+Bundle-Name: OSGI Tutorial Bundle
+Bundle-Description: The osgi tutorial using bnd tools
+-runfw: org.apache.felix.framework;version='[7.0.5,7.0.5]'
+-runee: JavaSE-17
+-runbundles: \
+	org.apache.felix.gogo.command;version='[1.1.2,1.1.3)',\
+	org.apache.felix.gogo.runtime;version='[1.1.6,1.1.7)',\
+	org.apache.felix.gogo.shell;version='[1.1.4,1.1.5)',\
+	org.silverviles.platform;version=snapshot
+	
+-runrequires: \
+	bnd.identity;id='org.apache.felix.gogo.command',\
+	bnd.identity;id='org.apache.felix.gogo.runtime',\
+	bnd.identity;id='org.apache.felix.gogo.shell',\
+	bnd.identity;id='org.silverviles.platform'
+-resolve: auto
