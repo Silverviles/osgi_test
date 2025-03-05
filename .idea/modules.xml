@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/org.osgi.tutorial/org.osgi.tutorial.iml" filepath="$PROJECT_DIR$/org.osgi.tutorial/org.osgi.tutorial.iml" />
-      <module fileurl="file://$PROJECT_DIR$/org.silverviles.platform/org.silverviles.platform.iml" filepath="$PROJECT_DIR$/org.silverviles.platform/org.silverviles.platform.iml" />
-    </modules>
-  </component>
-</project>
