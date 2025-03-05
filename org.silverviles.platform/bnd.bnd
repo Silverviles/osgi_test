@@ -1,7 +1,4 @@
--buildpath: \
-	osgi.core,\
-	osgi.enterprise,\
-	aQute.libg
+-buildpath: osgi.core
 Export-Package: org.silverviles.platform
 Bundle-Version: 1.0.0.0
 Bundle-Activator: org.silverviles.platform.PlatformActivator

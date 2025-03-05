@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bnd:osgi.enterprise:7.0.0.201810101357">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/osgi/osgi.enterprise/7.0.0/osgi.enterprise-7.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/osgi/osgi.enterprise/7.0.0/osgi.enterprise-7.0.0.jar!/OSGI-OPT/src" />
+    </SOURCES>
+  </library>
+</component>

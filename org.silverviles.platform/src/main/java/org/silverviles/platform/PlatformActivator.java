@@ -6,12 +6,12 @@ import org.osgi.framework.ServiceRegistration;
 
 public class PlatformActivator implements BundleActivator {
 
-	private ServiceRegistration<?> registration;
-	
+	private ServiceRegistration<Platform> registration;
+
 	@Override
 	public void start(BundleContext context) throws Exception {
 		Platform platform = new PlatformImpl();
-		registration = context.registerService(Platform.class.getName(), platform, null);
+		registration = context.registerService(Platform.class, platform, null);
 		System.out.println("Platform service initialized.");
 	}
 
