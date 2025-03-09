@@ -1,13 +1,11 @@
 package org.sa.manager;
 
-
-
+import org.sa.itemservice.Item;
 
 public interface AuctionManagerService {
     
-
-    void createAuction(AuctionItem item);
-    void placeBid(String itemId, Bid bid);
+    void createAuction(Item item);
     Auction getAuction(String itemId);
     void endAuction(String itemId);
+    
 }

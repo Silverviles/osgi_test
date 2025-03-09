@@ -2,32 +2,25 @@ package org.sa.manager;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.sa.itemservice.Item; // Import the Item class
+
 public class AuctionManagerServiceImpl implements AuctionManagerService {
-    
+
     // A simple in-memory store mapping itemId -> Auction
     private final Map<String, Auction> auctions = new HashMap<>();
-    
+
     @Override
-    public void createAuction(AuctionItem item) {
-        if (item == null || auctions.containsKey(item.getItemId())) {
+    public void createAuction(Item item) {  // Changed AuctionItem to Item
+        if (item == null || auctions.containsKey(item.getId())) {
             System.out.println("Auction already exists or item is invalid.");
             return;
         }
-        Auction newAuction = new Auction(item);
-        auctions.put(item.getItemId(), newAuction);
-        System.out.println("Auction created for item: " + item.getItemName());
+        Auction newAuction = new Auction(item);  // Create Auction with Item
+        auctions.put(item.getId().toString(), newAuction);  // Assuming itemId is the unique identifier for Item
+        System.out.println("Auction created for item: " + item.getName()+" with id :"+item.getId());
     }
 
-    @Override
-    public void placeBid(String itemId, Bid bid) {
-        Auction auction = auctions.get(itemId);
-        if (auction == null || !auction.isActive()) {
-            System.out.println("Cannot place bid. Auction not found or inactive.");
-            return;
-        }
-        auction.addBid(bid);
-        System.out.println("Bid placed by " + bid.getBidderId() + " with amount " + bid.getAmount());
-    }
+  
 
     @Override
     public Auction getAuction(String itemId) {
@@ -39,14 +32,8 @@ public class AuctionManagerServiceImpl implements AuctionManagerService {
         Auction auction = auctions.get(itemId);
         if (auction != null && auction.isActive()) {
             auction.endAuction();
-            System.out.println("Auction ended for item: " + auction.getAuctionItem().getItemName());
-            Bid highestBid = auction.getHighestBid();
-            if (highestBid != null) {
-                System.out.println("Winning bidder: " + highestBid.getBidderId() 
-                                   + " with amount " + highestBid.getAmount());
-            } else {
-                System.out.println("No bids were placed.");
-            }
+            System.out.println("Auction ended for item: " + auction.getAuctionItem().getName());
+        
         } else {
             System.out.println("Auction not found or already ended.");
         }

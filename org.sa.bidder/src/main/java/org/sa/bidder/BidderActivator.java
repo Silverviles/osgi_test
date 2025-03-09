@@ -1,12 +1,10 @@
 package org.sa.bidder;
 
-import java.util.List;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
-import org.sa.itemservice.Item;
 import org.sa.itemservice.ItemService;
 
 public class BidderActivator implements BundleActivator {

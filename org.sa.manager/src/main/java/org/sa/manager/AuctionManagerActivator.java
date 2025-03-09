@@ -3,10 +3,15 @@ package org.sa.manager;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
+import org.sa.itemservice.Item;
+import org.sa.itemservice.ItemService;
+import org.sa.itemservice.ItemServiceImpl;
+
 
 public class AuctionManagerActivator implements BundleActivator {
 
     private ServiceRegistration<AuctionManagerService> serviceRegistration;
+    private ItemService itemService;
 
     @Override
     public void start(BundleContext bundleContext) throws Exception {
@@ -14,13 +19,19 @@ public class AuctionManagerActivator implements BundleActivator {
 
         AuctionManagerService auctionManagerService = new AuctionManagerServiceImpl();
 
+        itemService = new ItemServiceImpl();
+
         serviceRegistration = bundleContext.registerService(
             AuctionManagerService.class,
             auctionManagerService,
             null
         );
 
-        System.out.println("AuctionManagerService registered successfully.");
+        bundleContext.registerService(AuctionManagerItemCommand.class, new AuctionManagerItemCommand(), null);
+
+    
+
+        System.out.println("AuctionManagerService registered and ready for user interaction.");
     }
 
     @Override

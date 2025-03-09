@@ -1,15 +1,32 @@
 -resolve: auto
 -runfw: org.apache.felix.framework;version='[7.0.5,7.0.5]'
 -runee: JavaSE-21
--buildpath: org.apache.felix.framework
+-buildpath: \
+	org.apache.felix.framework,\
+	org.apache.felix.gogo.runtime,\
+	org.sa.itemservice,\
+	org.sa.biddingService,\
+	org.osgi.service.component.annotations,\
+	org.sa.bidder,\
+	org.osgi.annotation.versioning,\
+	org.osgi.annotation.bundle
 -runrequires: \
 	bnd.identity;id='org.apache.felix.gogo.shell',\
 	bnd.identity;id='org.apache.felix.gogo.command',\
-	bnd.identity;id='org.apache.felix.gogo.runtime'
+	bnd.identity;id='org.apache.felix.gogo.runtime',\
+	bnd.identity;id='org.apache.felix.scr'
 -runbundles: \
 	org.apache.felix.gogo.runtime;version='[1.1.6,1.1.7)',\
 	org.apache.felix.gogo.shell;version='[1.1.4,1.1.5)',\
-	org.apache.felix.gogo.command;version='[1.1.2,1.1.3)'
+	org.apache.felix.gogo.command;version='[1.1.2,1.1.3)',\
+	org.apache.felix.scr;version='[2.2.6,2.2.7)',\
+	org.osgi.service.component;version='[1.5.1,1.5.2)',\
+	osgi.promise;version='[8.1.0,8.1.1)'
 Private-Package: org.sa.manager
 Bundle-Version: 1.0.0.0
 Bundle-Activator: org.sa.manager.AuctionManagerActivator
+-privatepackage: \
+	org.sa.itemservice,\
+	org.sa.bidder,\
+	org.sa.biddingService
+Export-Package: org.sa.manager
