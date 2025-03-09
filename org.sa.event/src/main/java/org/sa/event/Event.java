@@ -1,18 +1,16 @@
 package org.sa.event;
 
-import java.time.LocalDateTime;
-
 public class Event {
 	
 	private int eventId;
 	private String eventName;
 	private String eventDescription;
 	private String eventLocation;
-	private LocalDateTime startBidDateTime;
-	private LocalDateTime endBidDateTime;
+	private String startBidDateTime;
+	private String endBidDateTime;
 	
 	
-	public Event( String eventName, String eventDescription, String eventLocation, LocalDateTime startBidDateTime,  LocalDateTime endBidDateTime) {
+	public Event( String eventName, String eventDescription, String eventLocation, String startBidDateTime,  String endBidDateTime) {
 		this.eventId = generateEventId();
 		this.eventName = eventName;
 		this.startBidDateTime = startBidDateTime;
@@ -42,11 +40,11 @@ public class Event {
 	}
 	
 
-	public LocalDateTime getStartBidDateTime() {
+	public String getStartBidDateTime() {
 		return startBidDateTime;
 	}
 	
-	public LocalDateTime getEndBidDateTime() {
+	public String getEndBidDateTime() {
 		return endBidDateTime;
 	}
 	

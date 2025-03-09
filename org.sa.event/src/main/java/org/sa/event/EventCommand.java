@@ -1,7 +1,6 @@
 package org.sa.event;
 
 
-import java.time.LocalDateTime;
 import java.util.Scanner;
 import org.osgi.service.component.annotations.Component;
 import org.apache.felix.service.command.Descriptor;
@@ -11,10 +10,11 @@ import org.apache.felix.service.command.Descriptor;
     property = {
         "osgi.command.scope=event",
         "osgi.command.function=startEvent"
-    }
+    },
+    immediate = true
 )
 public class EventCommand {
-
+	
     @Descriptor("Starts a new event by asking for user input")
     public void startEvent() {
         Scanner scanner = new Scanner(System.in);
@@ -29,12 +29,14 @@ public class EventCommand {
         String location = scanner.nextLine();
 
         System.out.print("Enter bid start time (yyyy-MM-ddTHH:mm:ss): ");
-        LocalDateTime startBidTime = LocalDateTime.parse(scanner.nextLine());
+        String startBidTime = scanner.nextLine();
 
         System.out.print("Enter bid end time (yyyy-MM-ddTHH:mm:ss): ");
-        LocalDateTime endBidTime = LocalDateTime.parse(scanner.nextLine());
+        String endBidTime = scanner.nextLine();
 
         Event event = new Event(name, description, location, startBidTime, endBidTime);
-        System.out.println("Event Created: " + event.getEventName() + " (ID: " + event.getEventId() + ")");
+        System.out.println("Event Started : " + event.getEventName() + " on " + event.getStartBidDateTime() + " (ID: " + event.getEventId() + ")");
+        
+        scanner.close();
     }
 }

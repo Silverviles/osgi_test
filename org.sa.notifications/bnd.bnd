@@ -1,6 +1,0 @@
--buildpath: org.apache.felix.framework
-Private-Package: org.sa.notificationservice
-Bundle-Version: 1.0.0.0
-Bundle-Activator: org.sa.notificationservice.NotificationActivator
--resolve: auto
-Export-Package: org.sa.notificationservice
