@@ -1,8 +1,8 @@
 package org.sa.event;
 
 public interface EventService {
-	
-	
-	void startEvent( String eventName, String eventDescription, String eventLocation,  String startBidDateTime, String endBidDateTime);
-
+    void startEvent(String eventName);
+	void endEvent(Long eventId);
+	Double getEventSummary(Long eventId);
+	Long getCurrentEvent();
 }

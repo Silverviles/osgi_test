@@ -1,21 +1,20 @@
--servicecomponent *
-
 -buildpath: \
 	org.apache.felix.framework,\
 	org.osgi.service.component.annotations,\
-	org.apache.felix.gogo.runtime,\
-	org.osgi.framework,\
-	org.osgi.service.dmt,\
 	org.sa.biddingService
 Bundle-Version: 1.0.0.0
-Export-Package: org.sa.event
--runrequires: \
-	bnd.identity;id='org.apache.felix.gogo.shell',\
-	bnd.identity;id='org.apache.felix.gogo.runtime',\
-	bnd.identity;id='org.apache.felix.gogo.command',\
-	bnd.identity;id='org.apache.felix.scr'
+Bundle-Activator: org.sa.items.ItemServiceActivator
+Export-Package: \
+	org.sa.items,\
+	org.sa.biddingService
 -runfw: org.apache.felix.framework;version='[7.0.5,7.0.5]'
 -runee: JavaSE-17
+-runrequires: \
+	bnd.identity;id='org.apache.felix.gogo.command',\
+	bnd.identity;id='org.apache.felix.gogo.runtime',\
+	bnd.identity;id='org.apache.felix.gogo.shell',\
+	bnd.identity;id='org.apache.felix.scr',\
+	bnd.identity;id='org.sa.biddingService'
 -resolve: auto
 -runbundles: \
 	org.apache.felix.gogo.command;version='[1.1.2,1.1.3)',\
@@ -23,5 +22,5 @@ Export-Package: org.sa.event
 	org.apache.felix.gogo.shell;version='[1.1.4,1.1.5)',\
 	org.apache.felix.scr;version='[2.2.6,2.2.7)',\
 	org.osgi.service.component;version='[1.5.1,1.5.2)',\
-	osgi.promise;version='[8.1.0,8.1.1)'
-Bundle-Activator: org.sa.event.EventServiceActivator
+	osgi.promise;version='[8.1.0,8.1.1)',\
+	org.sa.biddingService;version=snapshot

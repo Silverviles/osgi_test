@@ -1,38 +1,35 @@
 package org.sa.biddingService;
 
-import java.util.concurrent.atomic.AtomicReference;
-
-import org.sa.itemservice.ItemService;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BiddingServiceImpl implements BiddingService {
-	
-	private final AtomicReference<Bid> highestBid = new AtomicReference<>();
-    private final ItemService itemService;
-
-    public BiddingServiceImpl(ItemService itemService) {
-        this.itemService = itemService;
-    }
+    private final List<Bid> bids = new ArrayList<>();
 
     @Override
     public void placeBid(Bid bid) {
-        if (itemService.getItemByName(bid.getName()) == null) {
-            System.out.println("Invalid item: " + bid.getName());
-            return;
-        }
-
-        // Ensure the bid is higher
-        Bid currentHighest = highestBid.get();
-        if (currentHighest == null || bid.getBidAmount() > currentHighest.getBidAmount()) {
-            highestBid.set(bid);
-            System.out.println("New highest bid: " + bid);
-        } else {
-            System.out.println("Bid too low: " + bid);
-        }
+        bids.add(bid);
     }
 
     @Override
-    public Bid getHighestBid() {
-        return highestBid.get();
+    public Double getHighestBid(Long eventId) {
+        return bids.stream()
+                .filter(bid -> bid.getEventId().equals(eventId))
+                .mapToDouble(Bid::getBidAmount)
+                .max()
+                .orElse(0.0);
     }
 
+    @Override
+    public List<Bid> getAllBids(Long id, char type) {
+    	if (type == 'e') {
+    		return bids.stream()
+                    .filter(bid -> bid.getEventId().equals(id))
+                    .toList();
+    	} else {
+    		return bids.stream()
+                    .filter(bid -> bid.getItemId().equals(id))
+                    .toList();
+    	}
+    }
 }

@@ -1,36 +1,44 @@
 package org.sa.event;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import org.sa.biddingService.BiddingService;
 
 public class EventServiceImpl implements EventService {
+    Long eventId = 0L;
+    List<Event> events = new ArrayList<>();
+    
+    private BiddingService biddingService;
 
+    public void setBidderService(BiddingService biddingService) {
+        this.biddingService = biddingService;
+    }
+
+    @Override
+    public void startEvent(String eventName) {
+        Event event = new Event(eventId++, eventName);
+        events.add(event);
+    }
+
+    @Override
+    public void endEvent(Long eventId) {
+        events.stream().filter(event -> event.getEventId().equals(eventId))
+                .findFirst().
+                ifPresent(Event::endEvent);
+    }
+
+    @Override
+    public Double getEventSummary(Long eventId) {
+        return biddingService.getHighestBid(eventId);
+    }
 
 	@Override
-	public void startEvent(String eventName, String eventDescription, String eventLocation, String startBidDateTime,
-			String endBidDateTime) {
-		
-		// Create an event object
-		Event event = new Event(eventName, eventDescription, eventLocation, startBidDateTime, endBidDateTime);
-		
-		System.out.println("Bidding started for event: " + event.getEventName());
-		System.out.println("Location: " + event.getEventLocation());
-		System.out.println("Bidding starts at: " + event.getStartBidDateTime());
-		
+	public Long getCurrentEvent() {
+		return events.stream()
+				.filter(Event::getIsEventActive)
+				.map(Event::getEventId)
+				.findFirst()
+				.orElse(-1L);
 	}
-	
-//	
-//	//convert date string to LocalDateTime
-//	private LocalDateTime convertStringToDate(String date) {
-//	    try {
-//	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//	        return LocalDateTime.parse(date, formatter);
-//	    } catch (Exception e) {
-//	        throw new IllegalArgumentException("Invalid date format. Expected format: yyyy-MM-dd HH:mm", e);
-//	    }
-//	}
-	
-
-
-
-
 }
