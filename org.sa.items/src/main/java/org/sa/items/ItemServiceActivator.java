@@ -12,10 +12,7 @@ public class ItemServiceActivator implements BundleActivator {
     public BiddingService biddingService;
 
     @Override
-    public void start(BundleContext context) throws Exception {
-        ItemService itemService = new ItemServiceImpl();
-        registration = context.registerService(ItemService.class, itemService, null);
-        
+    public void start(BundleContext context) throws Exception { 
         ServiceReference<BiddingService> biddingRef = context.getServiceReference(BiddingService.class);
         biddingService = context.getService(biddingRef);
 
@@ -23,6 +20,9 @@ public class ItemServiceActivator implements BundleActivator {
             System.out.println("Item Service not available. Bidding service cannot function.");
             return;
         }
+        
+        ItemService itemService = new ItemServiceImpl(biddingService);
+        registration = context.registerService(ItemService.class, itemService, null);
         
         System.out.println("Item service initialized.");
     }

@@ -11,9 +11,9 @@ public class ItemServiceImpl implements ItemService {
 
     private BiddingService biddingService;
 
-    public void setBidderService(BiddingService biddingService) {
-        this.biddingService = biddingService;
-    }
+    public ItemServiceImpl(BiddingService service) {
+		this.biddingService = service;
+	}
     
     @Override
     public List<Item> getAllItems() {

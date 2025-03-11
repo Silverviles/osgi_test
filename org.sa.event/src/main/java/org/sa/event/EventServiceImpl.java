@@ -11,11 +11,11 @@ public class EventServiceImpl implements EventService {
     
     private BiddingService biddingService;
 
-    public void setBidderService(BiddingService biddingService) {
-        this.biddingService = biddingService;
-    }
+    public EventServiceImpl(BiddingService service) {
+		this.biddingService = service;
+	}
 
-    @Override
+	@Override
     public void startEvent(String eventName) {
         Event event = new Event(eventId++, eventName);
         events.add(event);

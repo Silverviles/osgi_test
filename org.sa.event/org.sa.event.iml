@@ -25,5 +25,6 @@
     <orderEntry type="library" name="bnd:org.apache.felix.gogo.runtime:1.1.6" level="project" />
     <orderEntry type="library" name="bnd:org.osgi.framework:1.10.0.202007221806" level="project" />
     <orderEntry type="library" name="bnd:org.osgi.service.dmt:2.0.2.201802012106" level="project" />
+    <orderEntry type="module" module-name="org.sa.biddingService" />
   </component>
 </module>
