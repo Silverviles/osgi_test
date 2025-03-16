@@ -5,6 +5,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public void setMinimumBid(Double minimumBid) {
+    	System.out.println("Minimum bid set to " + minimumBid);
         this.minimumBid = minimumBid;
     }
 

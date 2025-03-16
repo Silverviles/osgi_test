@@ -19,6 +19,7 @@ public class EventServiceImpl implements EventService {
     public void startEvent(String eventName) {
         Event event = new Event(eventId++, eventName);
         events.add(event);
+        System.out.println("Event started with name: " + eventName);
     }
 
     @Override
@@ -26,6 +27,7 @@ public class EventServiceImpl implements EventService {
         events.stream().filter(event -> event.getEventId().equals(eventId))
                 .findFirst().
                 ifPresent(Event::endEvent);
+        System.out.println("Event ended with id: " + eventId);
     }
 
     @Override

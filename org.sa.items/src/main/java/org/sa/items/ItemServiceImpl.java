@@ -32,6 +32,7 @@ public class ItemServiceImpl implements ItemService {
     		items.stream().filter(item -> item.getId().equals(Id))
             .findFirst()
             .ifPresent(items::remove);
+    		System.out.println("Item Removed. ItemID: " + Id);
     	} else {
     		System.out.println("Item is currently bidding.");
     	}
@@ -40,5 +41,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void AddItem(String name) {
         items.add(new Item(nextId++, name));
+        System.out.println("Item added to the list: " + name);
     }
 }
