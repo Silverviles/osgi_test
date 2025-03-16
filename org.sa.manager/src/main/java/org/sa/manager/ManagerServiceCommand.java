@@ -14,6 +14,7 @@ import org.sa.items.ItemService;
         property = {
                 "osgi.command.scope=manager",
                 "osgi.command.function=setMinimumBid",
+                "osgi.command.function=showHighestBid",
                 "osgi.command.function=addItem",
                 "osgi.command.function=removeItem",
                 "osgi.command.function=startEvent",
@@ -59,6 +60,14 @@ public class ManagerServiceCommand {
         double minimumBid = Double.parseDouble(scanner.nextLine());
 
         managerService.setMinimumBid(minimumBid);
+    }
+    
+    @Descriptor("Show highest bid value")
+    public void showHighestBid() {
+    	System.out.println("Enter Event ID");
+        Long eventId = Long.parseLong(scanner.nextLine());
+
+        System.out.println("Highest Bid is: " + biddingService.getHighestBid(eventId));
     }
 
     @Descriptor("Add an item")
